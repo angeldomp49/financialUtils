@@ -1,110 +1,84 @@
 package org.makechtec.financial.financialutils;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.anyInt;
+
+import org.junit.jupiter.api.BeforeEach;
 
 public class FinancialUtilsTest {
-    
-    FinancialUtils.Rate rate = new FinancialUtils.Rate();
-    FinancialUtils.CashFlow money = new FinancialUtils.CashFlow();
-    FinancialUtils.StreamOfCashFlow annuity = new FinancialUtils.StreamOfCashFlow();
-    FinancialUtils.PerpetuityFixedCashFlow perpetuity = new FinancialUtils.PerpetuityFixedCashFlow();
 
-    
-    
-    @Test
-    public void testCompoundedRate() {
-        assertEquals(1.79084, this.rate.compoundedFactor(0.06, 10), 0.00001);
+    @InjectMocks
+    private CashFlow cashFlow = new CashFlow();
+
+    @Mock
+    private Rate rate = Mockito.mock(Rate.class);
+    @Mock
+    private CompoundFactor factor = Mockito.mock(CompoundFactor.class);
+
+    private final Rate realRate = new Rate();
+    private final CompoundFactor realFactor = new CompoundFactor();
+
+    @BeforeEach
+    public void setUp(){
+        MockitoAnnotations.openMocks(this);
     }
-    
-    @Test
-    public void testEffectiveInterestRate(){
-        assertEquals( 0.06167, this.rate.effectiveInterestRate(0.06, 12), 0.00001);
+
+    @Test 
+    public void testCashFlowFutureValue(){
+        this.cashFlow
+            .futureValue(1000, 0.5, 10);
+
+        Mockito.verify(this.factor)
+                .compoundedFactor(anyDouble(), anyInt());
     }
-    
-    @Test
-    public void testEffectiveInterestRate_NewPeriods(){
-        assertEquals( 0.12715, this.rate.effectiveInterestRate(0.06, 12, 24), 0.00001);
-    }
-    
-    @Test
-    public void testEffectiveContinuousInterestRate(){
-        assertEquals(0.061836546, this.rate.effectiveContinuousInterestRate(0.06), 0.000000001);
-    }
-    
-    
-    
-    @Test
-    public void testMoneysTimeValueFutureValue(){
-        assertEquals(2552.563125, this.money.futureValue(2000, 0.05, 5), 0.000001);
-    }
-    
-    @Test
-    public void testMoneysTimeValueFutureValueWithStatedRate(){
-        assertEquals(2253.650060, this.money.futureValueWithStatedRate(2000, 0.12, 12), 0.000001);
-    }
-    
-    @Test
-    public void testMoneysTimeValueFutureValueWithStatedRate_NewPeriods(){
-        assertEquals(2539.469297, this.money.futureValueWithStatedRate(2000, 0.12, 12, 24), 0.000001);
-    }
-    
-    @Test
-    public void testMoneysTimeValuePresentValue(){
-        assertEquals(2000, this.money.presentValue(2552.563125, 0.05, 5), 0.000001);
-    }
-    
-    
-    
-    @Test
-    public void testAnnuitiesFutureValue(){
-        assertEquals( 69827.909654, this.annuity.futureValue(3000, 0.06, 15), 0.000001);
-    }
-    
-    @Test
-    public void testAnnuityPaymentAmount(){
-        assertEquals(3000, this.annuity.fixedPaymentAmount(69827.909654, 0.06, 15), 0.000001);
-    }
-    
-    @Test
-    public void testAnnuityPresentValue(){
-        assertEquals( 29136.746963 ,this.annuity.presentValue(3000, 0.06, 15), 0.000001);
-    }
-    
-    @Test
-    public void testAnnuityLoanPayment(){
-        assertEquals( 1757.302186 ,this.annuity.fixedLoanPaymentAmount(81000, 0.0016666, 48),0.000001);
-    }
-    
-    @Test
-    public void testAnnuityAcf(){
-        assertEquals( 50.815577, this.annuity.annuityCompoundFactor(0.06, 24), 0.000001 );
-    }
-    
-    @Test
-    public void testAnnuityAdf(){
-        assertEquals( 12.550357, this.annuity.annuityDiscountFactor(0.06, 24), 0.000001 );
-    }
-    
-    
-    
-    @Test
-    public void testPerpetuityPresentValue(){
-        assertEquals( 37500, this.perpetuity.presentValue(3000, 0.08), 0.000001);
-    }
-    
-    @Test
-    public void testPerpetuityPresentValue_Growth(){
-        assertEquals( 75000, this.perpetuity.presentValue(3000, 0.08, 0.04), 0.000001);
-    }
-    
-    @Test
-    public void testPerpetuityAcf(){
-        assertEquals( 243.827636, this.perpetuity.annuityCompoundFactor(0.03, 0.04, 48), 0.000001);
-    }
-    
-    @Test
-    public void testPerpetuityAdf(){
-        assertEquals( 59.005995,this.perpetuity.annuityDiscountFactor(0.03, 0.04, 48), 0.000001 );
-    }
+
+
+
+
+    // @Test 
+    // public void testPerpetuityFixedCashFlowPresentValue(){
+    //     double payment = 100;
+    //     double rate = 0.1;
+    //     double expected = payment/rate;
+    //     double actual = this.financialUtils.new PerpetuityFixedCashFlow().presentValue(payment, rate);
+    //     assertEquals(expected, actual);
+    // }
+
+    // @Test 
+    // public void testPerpetuityFixedCashFlowPresentValue_grow(){
+    //     double payment = 100;
+    //     double rate = 0.1;
+    //     double growth = 0.05;
+    //     double expected = payment/(rate - growth);
+    //     double actual = this.financialUtils.new PerpetuityFixedCashFlow().presentValue(payment, rate, growth);
+    //     assertEquals(expected, actual);
+    // }
+
+
+
+    // @Test
+    // public void testRateEffectiveInterestRate(){
+    //     double effectiveInterestRate = this.realRate.effectiveInterestRate(0.05, 12);
+    //     assertEquals(0.05116, effectiveInterestRate, 0.00001);
+    // }
+
+    // @Test
+    // public void testRateEffectiveInterestRate_newPeriods(){
+    //     double effectiveInterestRate = this.realRate.effectiveInterestRate(0.05, 12, 24);
+    //     assertEquals(0.10494, effectiveInterestRate, 0.00001);
+    // }
+
+    // @Test
+    // public void testRateEffectiveContinuousInterestRate(){
+    //     double effectiveInterestRate = this.realRate.effectiveContinuousInterestRate(0.05);
+    //     assertEquals(0.05127, effectiveInterestRate, 0.00001);
+    // }
+
 }

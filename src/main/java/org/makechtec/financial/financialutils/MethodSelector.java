@@ -3,10 +3,6 @@ package org.makechtec.financial.financialutils;
 
 import java.util.Scanner;
 
-import org.makechtec.financial.financialutils.FinancialUtils.StreamOfCashFlow;
-import org.makechtec.financial.financialutils.FinancialUtils.CashFlow;
-import org.makechtec.financial.financialutils.FinancialUtils.PerpetuityFixedCashFlow;
-
 public class MethodSelector {
 
     private final Scanner scanner = new Scanner(System.in);
@@ -52,7 +48,7 @@ public class MethodSelector {
 
             switch(componentIndex){
                 case 0: 
-                    final CashFlow cashFlow = new FinancialUtils().new CashFlow();
+                    final CashFlow cashFlow = new CashFlow();
                     
                     switch(methodIndex){
                         case 0:
@@ -71,7 +67,7 @@ public class MethodSelector {
                 break;
 
                 case 1:
-                    final StreamOfCashFlow stream = new FinancialUtils().new StreamOfCashFlow();
+                    final StreamOfCashFlow stream = new StreamOfCashFlow();
 
                     switch(methodIndex){
                         case 0:
@@ -90,7 +86,7 @@ public class MethodSelector {
                 break;
 
                 case 2:
-                    final PerpetuityFixedCashFlow perpetuity = new FinancialUtils().new PerpetuityFixedCashFlow();
+                    final PerpetuityFixedCashFlow perpetuity = new PerpetuityFixedCashFlow();
 
                     switch(methodIndex){
                         case 0:
