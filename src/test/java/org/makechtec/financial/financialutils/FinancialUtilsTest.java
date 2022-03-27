@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FinancialUtilsTest {
     
     FinancialUtils.Rate rate = new FinancialUtils.Rate();
-    FinancialUtils.MoneysTimeValue money = new FinancialUtils.MoneysTimeValue();
-    FinancialUtils.Annuity annuity = new FinancialUtils.Annuity();
-    FinancialUtils.Perpetuity perpetuity = new FinancialUtils.Perpetuity();
+    FinancialUtils.CashFlow money = new FinancialUtils.CashFlow();
+    FinancialUtils.StreamOfCashFlow annuity = new FinancialUtils.StreamOfCashFlow();
+    FinancialUtils.PerpetuityFixedCashFlow perpetuity = new FinancialUtils.PerpetuityFixedCashFlow();
 
     
     
@@ -63,7 +63,7 @@ public class FinancialUtilsTest {
     
     @Test
     public void testAnnuityPaymentAmount(){
-        assertEquals(3000, this.annuity.paymentAmount(69827.909654, 0.06, 15), 0.000001);
+        assertEquals(3000, this.annuity.fixedPaymentAmount(69827.909654, 0.06, 15), 0.000001);
     }
     
     @Test
@@ -73,17 +73,17 @@ public class FinancialUtilsTest {
     
     @Test
     public void testAnnuityLoanPayment(){
-        assertEquals( 1757.302186 ,this.annuity.loanPayment(81000, 0.0016666, 48),0.000001);
+        assertEquals( 1757.302186 ,this.annuity.fixedLoanPaymentAmount(81000, 0.0016666, 48),0.000001);
     }
     
     @Test
     public void testAnnuityAcf(){
-        assertEquals( 50.815577, this.annuity.acf(0.06, 24), 0.000001 );
+        assertEquals( 50.815577, this.annuity.annuityCompoundFactor(0.06, 24), 0.000001 );
     }
     
     @Test
     public void testAnnuityAdf(){
-        assertEquals( 12.550357, this.annuity.adf(0.06, 24), 0.000001 );
+        assertEquals( 12.550357, this.annuity.annuityDiscountFactor(0.06, 24), 0.000001 );
     }
     
     
@@ -100,11 +100,11 @@ public class FinancialUtilsTest {
     
     @Test
     public void testPerpetuityAcf(){
-        assertEquals( 243.827636, this.perpetuity.acf(0.03, 0.04, 48), 0.000001);
+        assertEquals( 243.827636, this.perpetuity.annuityCompoundFactor(0.03, 0.04, 48), 0.000001);
     }
     
     @Test
     public void testPerpetuityAdf(){
-        assertEquals( 59.005995,this.perpetuity.adf(0.03, 0.04, 48), 0.000001 );
+        assertEquals( 59.005995,this.perpetuity.annuityDiscountFactor(0.03, 0.04, 48), 0.000001 );
     }
 }

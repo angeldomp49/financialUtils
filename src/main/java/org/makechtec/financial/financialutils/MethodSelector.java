@@ -3,10 +3,9 @@ package org.makechtec.financial.financialutils;
 
 import java.util.Scanner;
 
-import org.makechtec.financial.financialutils.FinancialUtils.Annuity;
-import org.makechtec.financial.financialutils.FinancialUtils.MoneysTimeValue;
-import org.makechtec.financial.financialutils.FinancialUtils.Perpetuity;
-import org.makechtec.financial.financialutils.FinancialUtils.Rate;
+import org.makechtec.financial.financialutils.FinancialUtils.StreamOfCashFlow;
+import org.makechtec.financial.financialutils.FinancialUtils.CashFlow;
+import org.makechtec.financial.financialutils.FinancialUtils.PerpetuityFixedCashFlow;
 
 public class MethodSelector {
 
@@ -53,86 +52,56 @@ public class MethodSelector {
 
             switch(componentIndex){
                 case 0: 
-                    final Rate rate = new Rate();
+                    final CashFlow cashFlow = new FinancialUtils().new CashFlow();
                     
                     switch(methodIndex){
                         case 0:
-                            result = rate.compoundedFactor(scanner.nextDouble(), scanner.nextInt());
+                            result = cashFlow.futureValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                             break;
                         case 1:
-                            result = rate.effectiveInterestRate(scanner.nextDouble(), scanner.nextInt());
+                            result = cashFlow.futureValueWithStatedRate(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                             break;
                         case 2:
-                            result = rate.effectiveInterestRate(scanner.nextDouble(), scanner.nextInt(), scanner.nextInt());
+                            result = cashFlow.futureValueWithStatedRate(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt(), scanner.nextInt());
                             break;
                         case 3:
-                            result = rate.effectiveContinuousInterestRate(scanner.nextDouble());
+                            result = cashFlow.presentValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                             break;
                     }
                 break;
 
                 case 1:
-                    final MoneysTimeValue moneysTimeValue = new MoneysTimeValue();
+                    final StreamOfCashFlow stream = new FinancialUtils().new StreamOfCashFlow();
 
                     switch(methodIndex){
                         case 0:
-                            result = moneysTimeValue.futureValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
+                            result = stream.futureValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                             break;
                         case 1:
-                            result = moneysTimeValue.futureValueWithStatedRate(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
+                            result = stream.fixedPaymentAmount(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                             break;
                         case 2:
-                            result = moneysTimeValue.futureValueWithStatedRate(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt(), scanner.nextInt());
+                            result = stream.presentValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                             break;
                         case 3:
-                            result = moneysTimeValue.presentValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
+                            result = stream.fixedLoanPaymentAmount(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
                             break;
                     }
                 break;
 
                 case 2:
-                    final Annuity annuity = new Annuity();
-
-                    switch(methodIndex){
-                        case 0:
-                            result = annuity.futureValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
-                            break;
-                        case 1:
-                            result = annuity.paymentAmount(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
-                            break;
-                        case 2:
-                            result = annuity.presentValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
-                            break;
-                        case 3:
-                            result = annuity.loanPayment(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
-                            break;
-                        case 4:
-                            result = annuity.acf(scanner.nextDouble(), scanner.nextInt());
-                            break;
-                        case 5:
-                            result = annuity.adf(scanner.nextDouble(), scanner.nextInt());
-                            break;
-                    }
-                break;
-
-                case 3:
-                    final Perpetuity perpetuity = new Perpetuity();
+                    final PerpetuityFixedCashFlow perpetuity = new FinancialUtils().new PerpetuityFixedCashFlow();
 
                     switch(methodIndex){
                         case 0:
                             result = perpetuity.presentValue(scanner.nextDouble(), scanner.nextDouble());
                             break;
                         case 1:
-                            result = perpetuity.presentValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
-                            break;
-                        case 2:
-                            result = perpetuity.adf(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
-                            break;
-                        case 3:
-                            result = perpetuity.acf(scanner.nextDouble(), scanner.nextDouble(), scanner.nextInt());
+                            result = perpetuity.presentValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble());
                             break;
                     }
                 break;
+
             }
 
             return result;
