@@ -2,8 +2,8 @@ package org.makechtec.financial.financialutils;
 
 public class CashFlow{
 
-    private final Rate rate = new Rate();
-    public final CompoundFactor factor = new CompoundFactor();
+    private Rate rate = new Rate();
+    private CompoundFactor factor = new CompoundFactor();
 
     public double futureValue(double initialValue, double rate, int periods){
         return initialValue * this.factor.compoundedFactor(rate, periods);
