@@ -2,7 +2,7 @@ package org.makechtec.financial.financialutils;
 
 public class StreamOfCashFlow{
 
-        private final CompoundFactor factor = new CompoundFactor();
+        private CompoundFactor factor = new CompoundFactor();
         
         public double futureValue(double payment, double rate, int periods){
             return payment * this.factor.annuityCompoundFactor(rate, periods);
