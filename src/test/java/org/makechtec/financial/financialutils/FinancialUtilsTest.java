@@ -1,45 +1,35 @@
 package org.makechtec.financial.financialutils;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class FinancialUtilsTest {
 
-    @InjectMocks
-    private CashFlow cashFlow = new CashFlow();
-
+    @Spy
     @Mock
-    private Rate rate = Mockito.mock(Rate.class);
-    @Mock
-    private CompoundFactor factor = Mockito.mock(CompoundFactor.class);
-
-    private final Rate realRate = new Rate();
-    private final CompoundFactor realFactor = new CompoundFactor();
+    CompoundFactor f;
 
     @BeforeEach
-    public void setUp(){
+    public void init() {
+        Mockito.when(this.f.compoundedFactor(anyDouble(), anyInt())).thenReturn(1.0);
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test 
-    public void testCashFlowFutureValue(){
-        this.cashFlow
-            .futureValue(1000, 0.5, 10);
-
-        Mockito.verify(this.factor)
-                .compoundedFactor(anyDouble(), anyInt());
+    @Test
+    public void testFutureValue() {
+        
+        this.f.compoundedFactor(4, 4);
     }
-
-
 
 
     // @Test 
