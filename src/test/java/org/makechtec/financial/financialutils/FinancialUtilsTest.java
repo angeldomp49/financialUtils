@@ -15,13 +15,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class FinancialUtilsTest {
 
-    @Spy
     @Mock
     CompoundFactor f;
 
     @BeforeEach
     public void init() {
-        Mockito.when(this.f.compoundedFactor(anyDouble(), anyInt())).thenReturn(1.0);
         MockitoAnnotations.openMocks(this);
     }
 
