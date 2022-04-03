@@ -22,3 +22,17 @@ través de la consola.
 
 
 Aún se sigue trabajando en el manejo de errores.
+
+Se agregan las pruebas unitarias con Mockito y JUnit 5 para las siguientes clases:
+
+CashFlow
+StreamOfCashFlow
+PerpetuityFixedCashFlow
+
+Se agrega SreamOfCashFlow.futureValueWithInitialValue que calcula un flujo de dinero compuesto por pagos fijos pero además lo suma con el
+valor futuro del monto inicial.
+
+También se agregan __StreamOfCashFlow.periodsForGoal__ para obtener el número de periodos para obtener una meta con el interés y el pago fijo
+hay además una versión __StreamOfCashFlow.periodsForGoalWithInitialValue__ para lo mismo pero cuando hay una cantidad inicial. 
+
+Se agrega la clase __Log__ con el método __customBase__ que no hace más que obtener un logaritmo con una base distinta a __e__ y a __10__.
