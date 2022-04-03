@@ -1,6 +1,8 @@
-package org.makechtec.financial.financialutils;
+package org.makechtec.financial.financialutils.entries;
 
 import java.util.Scanner;
+
+import org.makechtec.financial.financialutils.cashflow.StreamOfCashFlow;
 
 public class F {
     public static void main(String[] args){

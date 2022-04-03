@@ -1,7 +1,12 @@
 
-package org.makechtec.financial.financialutils;
+package org.makechtec.financial.financialutils.entries;
 
 import java.util.Scanner;
+
+import org.makechtec.financial.financialutils.TextStorage;
+import org.makechtec.financial.financialutils.cashflow.CashFlow;
+import org.makechtec.financial.financialutils.cashflow.PerpetuityFixedCashFlow;
+import org.makechtec.financial.financialutils.cashflow.StreamOfCashFlow;
 
 public class MethodSelector {
 

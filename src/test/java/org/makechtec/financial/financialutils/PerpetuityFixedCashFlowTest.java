@@ -1,6 +1,8 @@
 package org.makechtec.financial.financialutils;
 
 import org.junit.jupiter.api.Test;
+import org.makechtec.financial.financialutils.cashflow.PerpetuityFixedCashFlow;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PerpetuityFixedCashFlowTest {

@@ -1,4 +1,7 @@
-package org.makechtec.financial.financialutils;
+package org.makechtec.financial.financialutils.cashflow;
+
+import org.makechtec.financial.financialutils.CompoundFactor;
+import org.makechtec.financial.financialutils.Log;
 
 public class StreamOfCashFlow{
 
