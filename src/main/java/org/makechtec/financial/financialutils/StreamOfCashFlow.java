@@ -30,7 +30,7 @@ public class StreamOfCashFlow{
             double l = initialValue+j;
             double base = 1+rate;
 
-            double periodsDouble = new Log().customBase((k/l), base);
+            double periodsDouble = new Log().customBase(base, (k/l));
 
             return Math.round(periodsDouble);
         }

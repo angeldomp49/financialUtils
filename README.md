@@ -36,3 +36,8 @@ También se agregan __StreamOfCashFlow.periodsForGoal__ para obtener el número 
 hay además una versión __StreamOfCashFlow.periodsForGoalWithInitialValue__ para lo mismo pero cuando hay una cantidad inicial. 
 
 Se agrega la clase __Log__ con el método __customBase__ que no hace más que obtener un logaritmo con una base distinta a __e__ y a __10__.
+
+
+### maven commands ###
+
+skip tests: -Dmaven.test.skip=true
