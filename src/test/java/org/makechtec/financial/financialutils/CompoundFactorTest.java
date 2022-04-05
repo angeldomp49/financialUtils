@@ -1,70 +1,67 @@
 package org.makechtec.financial.financialutils;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import org.junit.jupiter.api.BeforeEach;
 
 public class CompoundFactorTest {
 
-    @Test
-    public void testCompoundedFactor() {
-        System.out.println("compoundedFactor");
-        double rate = 0.08;
-        int periods = 10;
-        CompoundFactor instance = new CompoundFactor();
-        double expResult = 2.15892;
-        double result = instance.compoundedFactor(rate, periods);
-        assertEquals(expResult, result, 0.000001);
+    @Mock
+    private Rate rate;
+
+    @InjectMocks
+    private CompoundFactor factor;
+
+    @Spy
+    private CompoundFactor spyFactor;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testAnnuityCompoundFactor_double_int() {
-        System.out.println("annuityCompoundFactor");
-        double rate = 0.05;
-        int periods = 2;
-        CompoundFactor instance = new CompoundFactor();
-        double expResult = 0.05062;
-        double result = instance.annuityCompoundFactor(rate, periods);
-        assertEquals(expResult, result, 0.000001);
-        fail("The test case is a prototype.");
+    public void testCompoundFactor() {
+        this.factor.compoundFactor(0.06, 2);
+        verify(this.rate,times(1)).compoundRate(anyDouble(), anyInt());
     }
 
     @Test
-    public void testAnnuityCompoundFactor_3args() {
-        System.out.println("annuityCompoundFactor");
-        double rate = 0.05;
-        double growth = 0.03;
-        int periods = 10;
-        CompoundFactor instance = new CompoundFactor();
-        double expResult = 0.0;
-        double result = instance.annuityCompoundFactor(rate, growth, periods);
-        assertEquals(expResult, result, 0.000001);
-        fail("The test case is a prototype.");
+    public void testStreamFactor() {
+        this.factor.streamFactor(0.06, 10);
+        verify(this.rate,times(1)).compoundRate(anyDouble(), anyInt());
     }
 
     @Test
-    public void testAnnuityDiscountFactor_double_int() {
-        System.out.println("annuityDiscountFactor");
-        double rate = 0.0;
-        int periods = 0;
-        CompoundFactor instance = new CompoundFactor();
-        double expResult = 0.0;
-        double result = instance.annuityDiscountFactor(rate, periods);
-        assertEquals(expResult, result, 0.0);
-        fail("The test case is a prototype.");
+    public void testStreamFactor_growth() {
+        Mockito.when(spyFactor.compoundFactor(anyDouble(), anyInt())).thenReturn(1.0);
+        spyFactor.streamFactor(0.03, 0.01, 10);
+        verify(spyFactor,times(2)).compoundFactor(anyDouble(), anyInt());
+    }
+
+    @Test
+    public void testDiscountFactor() {
+        Mockito.when(spyFactor.compoundFactor(anyDouble(), anyInt())).thenReturn(1.0);
+        spyFactor.discountFactor(0.03, 10);
+        verify(spyFactor,times(1)).compoundFactor(anyDouble(), anyInt());
     }
 
     @Test
     public void testAnnuityDiscountFactor_3args() {
-        System.out.println("annuityDiscountFactor");
-        double rate = 0.0;
-        double growth = 0.0;
-        int periods = 0;
-        CompoundFactor instance = new CompoundFactor();
-        double expResult = 0.0;
-        double result = instance.annuityDiscountFactor(rate, growth, periods);
-        assertEquals(expResult, result, 0.0);
-        fail("The test case is a prototype.");
+        Mockito.when(spyFactor.compoundFactor(anyDouble(), anyInt())).thenReturn(1.0);
+        spyFactor.discountFactor(0.03,0.02, 10);
+        verify(spyFactor,times(2)).compoundFactor(anyDouble(), anyInt());
     }
     
 }

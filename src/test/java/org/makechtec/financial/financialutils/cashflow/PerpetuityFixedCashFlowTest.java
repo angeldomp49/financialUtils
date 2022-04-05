@@ -1,4 +1,4 @@
-package org.makechtec.financial.financialutils;
+package org.makechtec.financial.financialutils.cashflow;
 
 import org.junit.jupiter.api.Test;
 import org.makechtec.financial.financialutils.cashflow.PerpetuityFixedCashFlow;

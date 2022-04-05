@@ -2,27 +2,37 @@ package org.makechtec.financial.financialutils;
 
 public class CompoundFactor{
 
-    public double compoundedFactor(double rate, int periods){
-        return Math.pow((1+rate), periods);
+    public Rate rate = new Rate();
+
+    public double compoundFactor(double rate, int periods){
+        return this.rate.compoundRate(rate, periods)+1;
     }
 
-    public double annuityCompoundFactor(double rate, int periods){
-        double dividend = this.compoundedFactor(rate, periods) - 1;
+    public double effectiveInterestFactor(double statedRate, int periods){
+        return this.rate.effectiveInterestRate(statedRate, periods)+1;
+    }
+
+    public double effectiveInterestFactor(double statedRate, int periods, int newPeriods){
+        return this.rate.effectiveInterestRate(statedRate, periods, newPeriods)+1;
+    }
+
+    public double streamFactor(double rate, int periods){
+        double dividend = this.rate.compoundRate(rate, periods);
         return dividend/rate;
     }
 
-    public double annuityCompoundFactor(double rate, double growth, int periods){
-        double dividend = this.compoundedFactor(rate, periods) - this.compoundedFactor(growth, periods);
+    public double streamFactor(double rate, double growth, int periods){
+        double dividend = this.compoundFactor(rate, periods) - this.compoundFactor(growth, periods);
         return dividend/(rate-growth);
     }
 
-    public double annuityDiscountFactor(double rate, int periods){
-        double dividend = 1 - (1 / this.compoundedFactor(rate, periods));
+    public double discountFactor(double rate, int periods){
+        double dividend = 1 - (1 / this.compoundFactor(rate, periods));
         return dividend/rate;
     }
 
-    public double annuityDiscountFactor(double rate, double growth, int periods){
-        double ratio = this.compoundedFactor(growth, periods)/this.compoundedFactor(rate, periods);
+    public double discountFactor(double rate, double growth, int periods){
+        double ratio = this.compoundFactor(growth, periods)/this.compoundFactor(rate, periods);
         return (1- ratio)/(rate-growth);
     }
 
