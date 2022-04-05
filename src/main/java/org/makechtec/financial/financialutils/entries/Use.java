@@ -1,4 +1,4 @@
-package org.makechtec.financial.financialutils;
+package org.makechtec.financial.financialutils.entries;
 
 public class Use {
     
