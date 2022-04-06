@@ -15,6 +15,13 @@ public class RateTest {
         assertEquals(expResult, result, 0.00001);
     }
 
+    @Test
+    public void testRateFromCompound(){
+        double expResult = 0.05;
+        double result = rate.rateFromCompound(0.15762, 3);
+        assertEquals(expResult, result, 0.00001);
+    }
+
     @Test 
     public void testEffectiveInterestRate(){
         double expResult = 0.06120;

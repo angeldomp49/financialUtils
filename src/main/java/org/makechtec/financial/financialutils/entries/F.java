@@ -1,16 +1,13 @@
 package org.makechtec.financial.financialutils.entries;
 
-import java.util.Scanner;
-
 import org.makechtec.financial.financialutils.cashflow.StreamOfCashFlow;
 
 public class F {
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("insert params: ");
-        long periods = new StreamOfCashFlow().periodsForGoalWithInitialValue(scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble(), scanner.nextDouble()); 
-        System.out.println("periods: " + periods);
 
-        scanner.close();
+    public static void main(String[] args){
+        StreamOfCashFlow streamOfCashFlow = new StreamOfCashFlow();
+        double payment = streamOfCashFlow.presentValue(4000, 0.01, 24);
+
+        System.out.println("Payment: " + payment);
     }
 }
