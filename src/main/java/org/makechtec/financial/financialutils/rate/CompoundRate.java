@@ -34,7 +34,7 @@ public class CompoundRate {
         this.value = (Math.pow((1+rate.getValue()), period)) -1;
     }
 
-    public double getPeriod() {
+    public long getPeriod() {
         return period;
     }
 
