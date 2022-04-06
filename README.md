@@ -37,6 +37,10 @@ hay además una versión __StreamOfCashFlow.periodsForGoalWithInitialValue__ par
 
 Se agrega la clase __Log__ con el método __customBase__ que no hace más que obtener un logaritmo con una base distinta a __e__ y a __10__.
 
+Se agregan las pruebas unitarias faltantes y se crea el paquete __bound__ que contiene el __AbstractBound__, __BoundFactory__, __CouponBound__, y __ZeroCouponBound__.
+
+
+Cabe señalar que se iba a agregar un convertidor de años a meses y viceversa pero puede crear más confusión que soluciones así se que opta por retirarlo.
 
 ### maven commands ###
 

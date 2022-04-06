@@ -8,6 +8,4 @@ public class CouponBound extends AbstractBound{
         super(currentValue, maturityValue);
     }
 
-
-
 }
