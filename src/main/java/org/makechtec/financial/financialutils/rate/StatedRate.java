@@ -19,7 +19,8 @@ public class StatedRate {
     }
 
     public CompoundRate toCompoundRate(){
-        return new CompoundRate((this.value/this.declaredPeriod), this.actualPeriod);
+        double rateValue = (this.value/this.declaredPeriod);
+        return new CompoundRate(new Rate(rateValue), this.actualPeriod);
     }
 
     public ContinuousRate toContinuousRate(){

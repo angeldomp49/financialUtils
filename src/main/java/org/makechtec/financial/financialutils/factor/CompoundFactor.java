@@ -11,11 +11,13 @@ public class CompoundFactor {
 
     public CompoundFactor(CompoundRate rate) {
         this.compoundRate = rate;
+        this.growth = new Rate(0);
         this.generateValue();
     }
 
     public CompoundFactor(StatedRate statedRate){
         this.compoundRate = statedRate.toCompoundRate();
+        this.growth = new Rate(0);
         this.generateValue();
     }
 

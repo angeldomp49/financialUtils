@@ -42,6 +42,16 @@ Se agregan las pruebas unitarias faltantes y se crea el paquete __bound__ que co
 
 Cabe señalar que se iba a agregar un convertidor de años a meses y viceversa pero puede crear más confusión que soluciones así se que opta por retirarlo.
 
+### Nos encontramos con algunos problemas ###
+
+En primer lugar vamos a pedir de forma obligatoria el uso de __Rate__ en lugar de un double a menos que se requiera para
+operaciones matemáticas.
+
+Por otro lado vemos que hemos modificado __CompoundFactor__ y __SimpleFactor__ por lo que __CompoundRate__ está relacionado a 
+__SimpleRate__ lo cual es incorrecto. 
+
+Además de que debemos esclarecer el factor que es para el __StreamOfCashFlow__ y para el __CashFlow__.
+
 ### maven commands ###
 
 skip tests: -Dmaven.test.skip=true

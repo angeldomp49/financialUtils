@@ -1,5 +1,7 @@
 package org.makechtec.financial.financialutils.rate;
 
+import org.makechtec.financial.financialutils.factor.CompoundFactor;
+
 public class CompoundRate {
     private long period;
     private Rate rate;
@@ -8,12 +10,6 @@ public class CompoundRate {
     public CompoundRate(long period, double value){
         this.period = period;
         this.value = value;
-    }
-
-    public CompoundRate(double rate, long period) {
-        this.rate = new Rate(rate);
-        this.period = period;
-        this.generateValue();
     }
 
     public CompoundRate(Rate rate, long period) {
@@ -28,6 +24,10 @@ public class CompoundRate {
 
     public StatedRate toStatedRate(long actualPeriod){
         return new StatedRate(this.value, this.period, actualPeriod);
+    }
+
+    public CompoundFactor toCompoundFactor(){
+        return new CompoundFactor(this);
     }
 
     public void generateValue(){
