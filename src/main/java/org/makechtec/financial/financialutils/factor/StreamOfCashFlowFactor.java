@@ -1,5 +1,5 @@
 package org.makechtec.financial.financialutils.factor;
 
-public class CompoundFactor {
+public class StreamOfCashFlowFactor extends CompoundFactor{
     
 }
