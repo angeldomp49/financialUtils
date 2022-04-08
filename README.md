@@ -52,6 +52,15 @@ __SimpleRate__ lo cual es incorrecto.
 
 Además de que debemos esclarecer el factor que es para el __StreamOfCashFlow__ y para el __CashFlow__.
 
+
+
 ### maven commands ###
 
 skip tests: -Dmaven.test.skip=true
+
+
+
+### Anotaciones ###
+
+Actualizar la documentación
+Agregar el código correspondiente

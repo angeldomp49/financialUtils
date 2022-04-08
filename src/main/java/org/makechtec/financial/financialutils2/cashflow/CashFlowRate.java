@@ -1,5 +1,6 @@
 package org.makechtec.financial.financialutils2.cashflow;
 
+import org.makechtec.financial.financialutils2.Log;
 import org.makechtec.financial.financialutils2.rate.CompoundRate;
 import org.makechtec.financial.financialutils2.rate.Rate;
 
@@ -8,6 +9,8 @@ public class CashFlowRate implements CompoundRate{
     private Rate initRate;
     private long period;
     private Rate finalRate;
+
+    private final Log log = new Log();
 
     public CashFlowRate(final Rate rate, final long period){
         this.initRate = rate;
@@ -33,11 +36,20 @@ public class CashFlowRate implements CompoundRate{
     }
 
     private void generateRate(){
-        this.initRate = new Rate(0); //implement this
+        double exponent = 1/this.period;
+
+        double rate = this.finalRate.getValue() +1;
+        rate = Math.pow(rate, exponent);
+        rate = rate -1;
+        this.initRate = new Rate(rate);
     }
 
     private void generatePeriod(){
-        //implement this
+        double y = this.finalRate.getValue() +1;
+        double x = this.initRate.getValue() +1;
+
+        double periods = this.log.customBase(x, y);
+        this.period = Math.round(periods);
     }
 
     public Rate getInitRate() {

@@ -11,8 +11,18 @@ public class SimpleCashFlow implements CashFlow{
         this.generateFinalAmount();
     }
 
+    public SimpleCashFlow(CashFlowFactor factor, double finalAmount){
+        this.finalAmount = finalAmount;
+        this.factor = factor;
+        this.generateInitialAmount();
+    }
+
     private void generateFinalAmount(){
         this.finalAmount = this.initialAmount * this.factor.getValue();
+    }
+
+    private void generateInitialAmount(){
+        this.initialAmount = this.finalAmount / this.factor.getValue();
     }
 
     public double getPresentValue(){
