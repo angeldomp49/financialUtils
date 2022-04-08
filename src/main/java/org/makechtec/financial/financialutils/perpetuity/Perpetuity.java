@@ -1,4 +1,4 @@
-package org.makechtec.financial.financialutils2.perpetuity;
+package org.makechtec.financial.financialutils.perpetuity;
 
 public class Perpetuity{
 

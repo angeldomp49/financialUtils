@@ -1,11 +1,9 @@
 package org.makechtec.financial.financialutils.bound;
 
-public class CouponBound extends AbstractBound{
+import org.makechtec.financial.financialutils.cashflow.SimpleCashFlow;
+import org.makechtec.financial.financialutils.streamofcashflow.StreamOfCashFlow;
 
-    double couponPayment = 0;
-
-    public CouponBound(double currentValue, double maturityValue){
-        super(currentValue, maturityValue);
-    }
-
+public class CouponBound {
+    private SimpleCashFlow cashFlow;
+    private StreamOfCashFlow streamOfCashFlow;
 }

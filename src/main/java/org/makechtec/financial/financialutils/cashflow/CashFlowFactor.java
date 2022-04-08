@@ -1,7 +1,7 @@
-package org.makechtec.financial.financialutils2.cashflow;
+package org.makechtec.financial.financialutils.cashflow;
 
-import org.makechtec.financial.financialutils2.factor.CompoundFactor;
-import org.makechtec.financial.financialutils2.rate.BasicRate;
+import org.makechtec.financial.financialutils.factor.CompoundFactor;
+import org.makechtec.financial.financialutils.rate.BasicRate;
 
 public class CashFlowFactor implements CompoundFactor{
 

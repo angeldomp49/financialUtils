@@ -1,9 +1,9 @@
-package org.makechtec.financial.financialutils2.streamofcashflow;
+package org.makechtec.financial.financialutils.streamofcashflow;
 
-import org.makechtec.financial.financialutils2.cashflow.CashFlowFactor;
-import org.makechtec.financial.financialutils2.cashflow.CashFlowRate;
-import org.makechtec.financial.financialutils2.cashflow.SimpleCashFlow;
-import org.makechtec.financial.financialutils2.rate.BasicRate;
+import org.makechtec.financial.financialutils.cashflow.CashFlowFactor;
+import org.makechtec.financial.financialutils.cashflow.CashFlowRate;
+import org.makechtec.financial.financialutils.cashflow.SimpleCashFlow;
+import org.makechtec.financial.financialutils.rate.BasicRate;
 
 public class StreamOfCashFlow{
     private StreamFactor factor;
@@ -52,7 +52,7 @@ public class StreamOfCashFlow{
     
 
     private void generateFinalAmount(){
-        this.finalAmount = this.initialAmount * this.factor.getValue(); 
+        this.finalAmount = this.fixedPayment * this.factor.getValue(); 
     }
 
     private void generateFinalAmountWithInitalAmount(){
@@ -64,15 +64,19 @@ public class StreamOfCashFlow{
 
 
     private void generateFixedPayment(){
-        //implement this method
+        this.fixedPayment = this.finalAmount/this.factor.getValue();
     }
 
     private void generateFixedPaymentWithInitialAmount(){
-        //implement this method
+        double initCashFlowFinalValue = new SimpleCashFlow(this.initialAmount, this.cashFlowFactor).getFutureValue();
+        this.fixedPayment = (this.finalAmount - initCashFlowFinalValue)/this.factor.getValue();
     }
 
     private void generateInitialAmount(){
-        //implement this method
+        double fixedPaymentFutureValue = this.fixedPayment * this.factor.getValue();
+        double initAmountFutureValue = this.finalAmount - fixedPaymentFutureValue;
+        SimpleCashFlow initCashFlow = new SimpleCashFlow(this.cashFlowFactor, initAmountFutureValue);
+        this.initialAmount = initCashFlow.getPresentValue();
     }
 
 

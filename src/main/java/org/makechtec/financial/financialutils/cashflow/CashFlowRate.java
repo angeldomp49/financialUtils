@@ -1,7 +1,7 @@
-package org.makechtec.financial.financialutils2.cashflow;
+package org.makechtec.financial.financialutils.cashflow;
 
-import org.makechtec.financial.financialutils2.Log;
-import org.makechtec.financial.financialutils2.rate.BasicRate;
+import org.makechtec.financial.financialutils.Log;
+import org.makechtec.financial.financialutils.rate.BasicRate;
 
 public class CashFlowRate extends BasicRate{
 

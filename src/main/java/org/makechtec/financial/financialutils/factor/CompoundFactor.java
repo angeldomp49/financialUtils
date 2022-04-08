@@ -1,5 +1,8 @@
 package org.makechtec.financial.financialutils.factor;
 
-public class CompoundFactor {
-    
+import org.makechtec.financial.financialutils.rate.BasicRate;
+
+public interface CompoundFactor {
+    public double getValue();
+    public BasicRate getCompoundRate();
 }

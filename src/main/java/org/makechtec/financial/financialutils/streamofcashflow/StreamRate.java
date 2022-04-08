@@ -1,8 +1,8 @@
-package org.makechtec.financial.financialutils2.streamofcashflow;
+package org.makechtec.financial.financialutils.streamofcashflow;
 
-import org.makechtec.financial.financialutils2.Log;
-import org.makechtec.financial.financialutils2.cashflow.CashFlowRate;
-import org.makechtec.financial.financialutils2.rate.BasicRate;
+import org.makechtec.financial.financialutils.Log;
+import org.makechtec.financial.financialutils.cashflow.CashFlowRate;
+import org.makechtec.financial.financialutils.rate.BasicRate;
 
 public class StreamRate extends BasicRate{
 

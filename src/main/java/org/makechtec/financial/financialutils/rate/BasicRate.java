@@ -1,4 +1,4 @@
-package org.makechtec.financial.financialutils2.rate;
+package org.makechtec.financial.financialutils.rate;
 
 public class BasicRate {
     protected double initRate = 0;

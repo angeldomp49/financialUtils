@@ -1,4 +1,4 @@
-package org.makechtec.financial.financialutils2.cashflow;
+package org.makechtec.financial.financialutils.cashflow;
 
 public class SimpleCashFlow{
     private CashFlowFactor factor;
