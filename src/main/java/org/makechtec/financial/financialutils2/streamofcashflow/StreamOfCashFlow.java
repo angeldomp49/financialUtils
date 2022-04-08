@@ -1,8 +1,10 @@
 package org.makechtec.financial.financialutils2.streamofcashflow;
 
-import org.makechtec.financial.financialutils2.cashflow.CashFlow;
+import org.makechtec.financial.financialutils2.cashflow.CashFlowFactor;
+import org.makechtec.financial.financialutils2.cashflow.CashFlowRate;
+import org.makechtec.financial.financialutils2.cashflow.SimpleCashFlow;
 
-public class StreamOfCashFlow implements CashFlow{
+public class StreamOfCashFlow{
     private StreamFactor factor;
     private double initialAmount;
     private double finalAmount;
@@ -47,7 +49,7 @@ public class StreamOfCashFlow implements CashFlow{
     
 
     private void generateFinalAmount(){
-        //implement this method
+        SimpleCashFlow initCashFlow = new SimpleCashFlow(new CashFlowFactor(new CashFlowRate(this.factor.getCompoundRate().getInitRate().getValue(), compoundRate)), finalAmount)
     }
 
     private void generateFixedPayment(){

@@ -1,6 +1,6 @@
 package org.makechtec.financial.financialutils2.cashflow;
 
-public class SimpleCashFlow implements CashFlow{
+public class SimpleCashFlow{
     private CashFlowFactor factor;
     private double initialAmount;
     private double finalAmount;

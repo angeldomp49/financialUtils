@@ -12,7 +12,7 @@ public class StreamFactor implements CompoundFactor{
 
     @Override
     public double getValue() {
-        return this.streamRate.getFinalRate().getValue()+1;
+        return this.streamRate.getFinalRate()+1;
     }
 
     @Override

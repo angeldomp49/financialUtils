@@ -2,45 +2,29 @@ package org.makechtec.financial.financialutils2.rate;
 
 import org.makechtec.financial.financialutils2.cashflow.CashFlowRate;
 
-public class StatedRate {
+public class StatedRate extends BasicRate{
     
-    private long declaredPeriod;
-    private long actualPeriod;
-    private double value;
+    private long newPeriod;
 
-
-    
-    public StatedRate(double value, long declaredPeriod){
-        this.value = value;
-        this.declaredPeriod = declaredPeriod;
-        this.actualPeriod = declaredPeriod;
+    public StatedRate(double value, long period){
+        this.initRate = value;
+        this.period = period;
+        this.newPeriod = period;
     }
 
-    public StatedRate(double value, long declaredPeriod, long actualPeriod){
-        this.value = value;
-        this.declaredPeriod = declaredPeriod;
-        this.actualPeriod = actualPeriod;
+    public StatedRate(double value, long period, long newPeriod){
+        this.initRate = value;
+        this.period = period;
+        this.newPeriod = newPeriod;
     }
 
     public CashFlowRate toCashFlowRate(){
-        double r = this.value/this.declaredPeriod;
-        return new CashFlowRate(new Rate(r), this.actualPeriod);
+        double r = this.initRate/this.period;
+        return new CashFlowRate(r, this.newPeriod);
     }
 
     public double continuousRate(){
-        return Math.pow(Math.E, this.getValue()) - 1;
-    }
-    
-    public long getDeclaredPeriod() {
-        return declaredPeriod;
-    }
-
-    public long getActualPeriod() {
-        return actualPeriod;
-    }
-
-    public double getValue() {
-        return value;
+        return Math.pow(Math.E, this.initRate) - 1;
     }
 
 }

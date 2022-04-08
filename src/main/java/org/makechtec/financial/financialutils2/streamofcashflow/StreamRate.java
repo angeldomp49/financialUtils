@@ -2,30 +2,25 @@ package org.makechtec.financial.financialutils2.streamofcashflow;
 
 import org.makechtec.financial.financialutils2.Log;
 import org.makechtec.financial.financialutils2.cashflow.CashFlowRate;
-import org.makechtec.financial.financialutils2.rate.CompoundRate;
-import org.makechtec.financial.financialutils2.rate.Rate;
+import org.makechtec.financial.financialutils2.rate.BasicRate;
 
-public class StreamRate implements CompoundRate{
-
-    private Rate initRate;
-    private long period;
-    private Rate finalRate;
+public class StreamRate extends BasicRate{
 
     private final Log log = new Log();
 
-    public StreamRate(final Rate initRate, final long period){
+    public StreamRate(final double initRate, final long period){
         this.initRate = initRate;
         this.period = period;
         this.generateFinalRate();
     }
 
-    public StreamRate(final long period, final Rate finalRate){
+    public StreamRate(final long period, final double finalRate){
         this.period = period;
         this.finalRate = finalRate;
         this.generateRate();
     }
 
-    public StreamRate(final Rate initRate, final Rate finalRate){
+    public StreamRate(final double initRate, final double finalRate){
         this.initRate = initRate;
         this.finalRate = finalRate;
         this.generatePeriod();
@@ -33,38 +28,21 @@ public class StreamRate implements CompoundRate{
 
     private void generateFinalRate(){
         double dividend = new CashFlowRate(this.initRate, this.period)
-                            .getFinalRate()
-                            .getValue();
+                            .getFinalRate();
         
-        double result = (dividend/this.initRate.getValue())-1;
-
-        this.finalRate = new Rate(result);
+        this.finalRate = (dividend/this.initRate)-1;
     }
 
     private void generateRate(){
-        this.initRate = new Rate(0);
+        this.initRate = 0;
     }
 
     private void generatePeriod(){
-        double r = this.initRate.getValue() * (this.finalRate.getValue()+1);
+        double r = this.initRate * (this.finalRate+1);
         r = r+1;
-        double base = 1+this.initRate.getValue();
+        double base = 1+this.initRate;
         r = this.log.customBase(base, r);
         this.period = Math.round(r);
-    }
-
-    @Override
-    public Rate getInitRate() {
-        return this.initRate;
-    }
-
-    @Override
-    public Rate getFinalRate() {
-        return this.finalRate;
-    }
-
-    public long getPeriod(){
-        return this.period;
     }
     
 }

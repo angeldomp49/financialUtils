@@ -1,23 +1,20 @@
 package org.makechtec.financial.financialutils2.perpetuity;
 
-import org.makechtec.financial.financialutils2.features.WithPresentValue;
-import org.makechtec.financial.financialutils2.rate.Rate;
-
-public class Perpetuity implements WithPresentValue{
+public class Perpetuity{
 
     private double presentValue;
     private double payment;
-    private Rate interest;
-    private Rate growth;
+    private double interest;
+    private double growth;
 
-    public Perpetuity(double payment, Rate interest){
+    public Perpetuity(double payment, double interest){
         this.payment = payment;
         this.interest = interest;
-        this.growth = new Rate(0);
+        this.growth = 0;
         this.generatePresentValue();
     }
 
-    public Perpetuity(double payment, Rate interest, Rate growth){
+    public Perpetuity(double payment, double interest, double growth){
         this.payment = payment;
         this.interest = interest;
         this.growth = growth;
@@ -25,11 +22,11 @@ public class Perpetuity implements WithPresentValue{
     }
 
     private void generatePresentValue(){
-        this.presentValue = this.payment/this.interest.getValue();
+        this.presentValue = this.payment/this.interest;
     }
 
     private void generatePresentValueWithGrowth(){
-        this.presentValue = this.payment/(this.interest.getValue() - this.growth.getValue());
+        this.presentValue = this.payment/(this.interest - this.growth);
     }
 
 
@@ -44,11 +41,11 @@ public class Perpetuity implements WithPresentValue{
         return payment;
     }
 
-    public Rate getInterest() {
+    public double getInterest() {
         return interest;
     }
 
-    public Rate getGrowth() {
+    public double getGrowth() {
         return growth;
     }
 
