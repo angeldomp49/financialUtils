@@ -52,6 +52,17 @@ __SimpleRate__ lo cual es incorrecto.
 
 Además de que debemos esclarecer el factor que es para el __StreamOfCashFlow__ y para el __CashFlow__.
 
+### financialutils2 ###
+
+Acabamos de rehacer todo jaja, con el paquete de financialutils2.
+
+El objetivo ahora es terminar de implementar los métodos faltantes en las clases, falta del StreamOfCashFlow.
+
+Luego falta hacer un barrido para verificar que no hayamos olvidado nada.
+
+Posterior a eso vamos a hacer el código para el paquete de bound.
+
+Luego siguen las pruebas unitarias.
 
 
 ### maven commands ###
