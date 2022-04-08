@@ -9,21 +9,22 @@ public class StreamRate extends BasicRate{
     private final Log log = new Log();
 
     public StreamRate(final double initRate, final long period){
-        this.initRate = initRate;
-        this.period = period;
+        super(initRate, period);
         this.generateFinalRate();
     }
 
     public StreamRate(final long period, final double finalRate){
-        this.period = period;
-        this.finalRate = finalRate;
+        super(0, period, finalRate);
         this.generateRate();
     }
 
     public StreamRate(final double initRate, final double finalRate){
-        this.initRate = initRate;
-        this.finalRate = finalRate;
+        super(initRate, 0, finalRate);
         this.generatePeriod();
+    }
+
+    public StreamRate(BasicRate rate){
+        super(rate.getInitRate(), rate.getPeriod(), rate.getFinalRate());
     }
 
     private void generateFinalRate(){

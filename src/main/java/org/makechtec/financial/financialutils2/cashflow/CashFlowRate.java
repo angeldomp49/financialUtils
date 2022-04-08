@@ -8,21 +8,22 @@ public class CashFlowRate extends BasicRate{
     private final Log log = new Log();
 
     public CashFlowRate(final double rate, final long period){
-        this.initRate = rate;
-        this.period = period;
+        super(rate, period);
         this.generateFinalRate();
     }
 
     public CashFlowRate(final long period, final double compoundRate){
-        this.period = period;
-        this.finalRate = compoundRate;
+        super(0, period, compoundRate);
         this.generateInitRate();
     }
 
     public CashFlowRate(final double rate, final double compoundRate){
-        this.initRate = rate;
-        this.finalRate = compoundRate;
+        super(rate, 0, compoundRate);
         this.generatePeriod();
+    }
+
+    public CashFlowRate(BasicRate rate){
+        super(rate.getInitRate(), rate.getPeriod(), rate.getFinalRate());
     }
 
     private void generateFinalRate(){

@@ -3,18 +3,21 @@ package org.makechtec.financial.financialutils2.streamofcashflow;
 import org.makechtec.financial.financialutils2.cashflow.CashFlowFactor;
 import org.makechtec.financial.financialutils2.cashflow.CashFlowRate;
 import org.makechtec.financial.financialutils2.cashflow.SimpleCashFlow;
+import org.makechtec.financial.financialutils2.rate.BasicRate;
 
 public class StreamOfCashFlow{
     private StreamFactor factor;
+    private CashFlowFactor cashFlowFactor;
     private double initialAmount;
     private double finalAmount;
     private double fixedPayment;
 
-    public StreamOfCashFlow(double initialAmount, double fixedPayment, StreamFactor factor){
+    public StreamOfCashFlow(double initialAmount, double fixedPayment, BasicRate rate){
         this.initialAmount = initialAmount;
         this.fixedPayment = fixedPayment;
-        this.factor = factor;
-        this.generateFinalAmount();
+        this.factor = new StreamFactor(new StreamRate(rate));
+        this.cashFlowFactor = new CashFlowFactor(new CashFlowRate(rate));
+        this.generateFinalAmountWithInitalAmount();
     }
 
     public StreamOfCashFlow(double fixedPayment, StreamFactor factor){
@@ -39,20 +42,32 @@ public class StreamOfCashFlow{
     }
 
     public StreamOfCashFlow(StreamFactor factor, double finalAmount, double initialAmount){
-        this.initialAmount = 0;
+        this.initialAmount = initialAmount;
         this.factor = factor;
         this.finalAmount = finalAmount;
-        this.generateFixedPayment();
+        this.generateFixedPaymentWithInitialAmount();
     }
 
 
     
 
     private void generateFinalAmount(){
-        SimpleCashFlow initCashFlow = new SimpleCashFlow(new CashFlowFactor(new CashFlowRate(this.factor.getCompoundRate().getInitRate().getValue(), compoundRate)), finalAmount)
+        this.finalAmount = this.initialAmount * this.factor.getValue(); 
     }
 
+    private void generateFinalAmountWithInitalAmount(){
+        SimpleCashFlow initCashFlow = new SimpleCashFlow(this.initialAmount, this.cashFlowFactor);
+        double f = this.initialAmount * this.factor.getValue();
+        this.finalAmount = initCashFlow.getFutureValue() + f;
+    }
+
+
+
     private void generateFixedPayment(){
+        //implement this method
+    }
+
+    private void generateFixedPaymentWithInitialAmount(){
         //implement this method
     }
 
@@ -65,7 +80,6 @@ public class StreamOfCashFlow{
         return factor;
     }
 
-    @Override
     public double getPresentValue() {
         return initialAmount;
     }

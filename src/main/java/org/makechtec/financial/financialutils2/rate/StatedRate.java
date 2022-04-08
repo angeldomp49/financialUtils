@@ -7,14 +7,12 @@ public class StatedRate extends BasicRate{
     private long newPeriod;
 
     public StatedRate(double value, long period){
-        this.initRate = value;
-        this.period = period;
+        super(value, period);
         this.newPeriod = period;
     }
 
     public StatedRate(double value, long period, long newPeriod){
-        this.initRate = value;
-        this.period = period;
+        super(value, period);
         this.newPeriod = newPeriod;
     }
 
