@@ -3,7 +3,7 @@ package org.makechtec.financial.financialutils.streamofcashflow;
 import org.makechtec.financial.financialutils.cashflow.CashFlowFactor;
 import org.makechtec.financial.financialutils.cashflow.CashFlowRate;
 import org.makechtec.financial.financialutils.cashflow.SimpleCashFlow;
-import org.makechtec.financial.financialutils.rate.BasicRate;
+import org.makechtec.financial.financialutils.rate.CompoundRate;
 
 public class StreamOfCashFlow{
     private StreamFactor factor;
@@ -12,7 +12,7 @@ public class StreamOfCashFlow{
     private double finalAmount;
     private double fixedPayment;
 
-    public StreamOfCashFlow(double initialAmount, double fixedPayment, BasicRate rate){
+    public StreamOfCashFlow(double initialAmount, double fixedPayment, CompoundRate rate){
         this.initialAmount = initialAmount;
         this.fixedPayment = fixedPayment;
         this.factor = new StreamFactor(new StreamRate(rate));

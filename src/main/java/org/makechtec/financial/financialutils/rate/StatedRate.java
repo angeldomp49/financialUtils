@@ -2,7 +2,7 @@ package org.makechtec.financial.financialutils.rate;
 
 import org.makechtec.financial.financialutils.cashflow.CashFlowRate;
 
-public class StatedRate extends BasicRate{
+public class StatedRate extends CompoundRate{
     
     private long newPeriod;
 

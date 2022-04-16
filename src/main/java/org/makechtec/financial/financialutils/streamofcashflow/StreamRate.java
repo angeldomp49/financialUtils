@@ -2,9 +2,9 @@ package org.makechtec.financial.financialutils.streamofcashflow;
 
 import org.makechtec.financial.financialutils.Log;
 import org.makechtec.financial.financialutils.cashflow.CashFlowRate;
-import org.makechtec.financial.financialutils.rate.BasicRate;
+import org.makechtec.financial.financialutils.rate.CompoundRate;
 
-public class StreamRate extends BasicRate{
+public class StreamRate extends CompoundRate{
 
     private final Log log = new Log();
 
@@ -23,7 +23,7 @@ public class StreamRate extends BasicRate{
         this.generatePeriod();
     }
 
-    public StreamRate(BasicRate rate){
+    public StreamRate(CompoundRate rate){
         super(rate.getInitRate(), rate.getPeriod(), rate.getFinalRate());
     }
 

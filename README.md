@@ -85,3 +85,5 @@ Actualizar la documentación
 Agregar el código correspondiente
 
 poner todos los parametros en final
+
+la unica solución es colocar los parámetros del compoundRate para SimpleCashFlow dentro de la misma función de create de SimpleCashFlowFactory puesto que no tiene sentido crear un nuevo tipo de CashFlowRate para que sea utilizado solamente para el SimpleCashFlow. Si se trata de encapsular su comportamiento podemos crear una clase anidada dentro de SimpleCashFlowFactory con el mismo o diferente nombre. El objetivo es ya no crear un archivo nuevo pues no se va a utilizar.

@@ -1,28 +1,16 @@
 package org.makechtec.financial.financialutils.cashflow;
 
+import org.makechtec.financial.financialutils.rate.CompoundRate;
+
 public class SimpleCashFlow{
-    private CashFlowFactor factor;
+    private CompoundRate compoundRate;
     private double initialAmount;
     private double finalAmount;
 
-    public SimpleCashFlow(double initialAmount, CashFlowFactor factor){
+    public SimpleCashFlow(double initialAmount, CompoundRate compoundRate, double finalAmount){
         this.initialAmount = initialAmount;
-        this.factor = factor;
-        this.generateFinalAmount();
-    }
-
-    public SimpleCashFlow(CashFlowFactor factor, double finalAmount){
+        this.compoundRate = compoundRate;
         this.finalAmount = finalAmount;
-        this.factor = factor;
-        this.generateInitialAmount();
-    }
-
-    private void generateFinalAmount(){
-        this.finalAmount = this.initialAmount * this.factor.getValue();
-    }
-
-    private void generateInitialAmount(){
-        this.initialAmount = this.finalAmount / this.factor.getValue();
     }
 
     public double getPresentValue(){
@@ -33,7 +21,8 @@ public class SimpleCashFlow{
         return this.finalAmount;
     }
 
-    public CashFlowFactor getFactor(){
-        return this.factor;
+    public CompoundRate getFactor(){
+        return this.compoundRate;
     }
+
 }

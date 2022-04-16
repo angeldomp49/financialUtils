@@ -1,16 +1,16 @@
 package org.makechtec.financial.financialutils.rate;
 
-public class BasicRate {
+public class CompoundRate {
     protected double initRate = 0;
     protected double finalRate = 0;
     protected long period = 0;
 
-    public BasicRate(double initRate, long period){
+    public CompoundRate(double initRate, long period){
         this.initRate = initRate;
         this.period = period;
     }
 
-    public BasicRate(double initRate, long period, double finalRate){
+    public CompoundRate(double initRate, long period, double finalRate){
         this.initRate = initRate;
         this.period = period;
         this.finalRate = finalRate;
