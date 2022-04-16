@@ -64,6 +64,14 @@ Posterior a eso vamos a hacer el código para el paquete de bound.
 
 Luego siguen las pruebas unitarias.
 
+### Posibles aplicaciones ###
+
+Podemos dirigir el desarrollo para que obtengamos la ganancia aproximada de cada mes de un acción identificada
+y compararlas en gráficas.
+
+Por ejemplo para WALMEX y para BIMBO tener la ganancia proximada descontando la comisión de cada acción y luego
+comparar cual es mayor.
+
 
 ### maven commands ###
 
