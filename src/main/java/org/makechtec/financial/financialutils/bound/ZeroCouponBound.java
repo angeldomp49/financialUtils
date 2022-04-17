@@ -9,4 +9,8 @@ public class ZeroCouponBound {
         this.cashFlow = cashFlow;
     }
 
+    public SimpleCashFlow getCashFlow() {
+        return cashFlow;
+    }
+
 }

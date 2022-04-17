@@ -7,31 +7,14 @@ public class Perpetuity{
     private double interest;
     private double growth;
 
-    public Perpetuity(double payment, double interest){
-        this.payment = payment;
-        this.interest = interest;
-        this.growth = 0;
-        this.generatePresentValue();
-    }
-
-    public Perpetuity(double payment, double interest, double growth){
+    public Perpetuity(double presentValue, double payment, double interest, double growth){
+        this.presentValue = presentValue;
         this.payment = payment;
         this.interest = interest;
         this.growth = growth;
-        this.generatePresentValueWithGrowth();
-    }
-
-    private void generatePresentValue(){
-        this.presentValue = this.payment/this.interest;
-    }
-
-    private void generatePresentValueWithGrowth(){
-        this.presentValue = this.payment/(this.interest - this.growth);
     }
 
 
-
-    
 
     public double getPresentValue() {
         return presentValue;
