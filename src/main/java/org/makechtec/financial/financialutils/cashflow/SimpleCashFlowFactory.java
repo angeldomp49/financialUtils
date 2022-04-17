@@ -69,6 +69,11 @@ public class SimpleCashFlowFactory {
         }
     
         public double generateInitRate(long period, double finalRate){
+
+            if(period == 0){
+                return finalRate;
+            }
+            
             double exponent = 1/period;
     
             double rate = finalRate +1;

@@ -9,7 +9,7 @@ import org.makechtec.financial.financialutils.rate.CompoundRate;
 
 public class StreamOfCashFlowFactory {
     
-    private final SimpleCashFlowFactory cashFlowFactory = new SimpleCashFlowFactory();
+    private SimpleCashFlowFactory cashFlowFactory = new SimpleCashFlowFactory();
 
 
 
@@ -26,12 +26,12 @@ public class StreamOfCashFlowFactory {
         return new StreamOfCashFlow(0, this.generateFixedPayment(finalAmount, compoundRate), compoundRate, null, finalAmount);
     }
 
-    public StreamOfCashFlow createWithInitialAmount(double fixedPayment, CompoundRate compoundRate, double finalAmount){
-        return new StreamOfCashFlow(this.generateInitialAmount(fixedPayment, compoundRate, finalAmount), fixedPayment, compoundRate, compoundRate, finalAmount);
-    }
-
     public StreamOfCashFlow create(CompoundRate compoundRate, double finalAmount, double initialAmount){
         return new StreamOfCashFlow(initialAmount, this.generateFixedPaymentWithInitialAmount(initialAmount, compoundRate, finalAmount), compoundRate, compoundRate,finalAmount);
+    }
+
+    public StreamOfCashFlow createWithInitialAmount(double fixedPayment, CompoundRate compoundRate, double finalAmount){
+        return new StreamOfCashFlow(this.generateInitialAmount(fixedPayment, compoundRate, finalAmount), fixedPayment, compoundRate, compoundRate, finalAmount);
     }
 
     public double generateFinalAmount(double fixedPayment, CompoundRate streamRate){
@@ -49,7 +49,10 @@ public class StreamOfCashFlowFactory {
     }
 
     public double generateFixedPaymentWithInitialAmount(double initialAmount, CompoundRate compoundRate, double finalAmount){
-        double initCashFlowFinalValue = this.cashFlowFactory.create(initialAmount, compoundRate).getFutureValue();
+        double initCashFlowFinalValue = this.cashFlowFactory
+                                            .create(initialAmount, compoundRate)
+                                            .getFutureValue();
+
         return (finalAmount - initCashFlowFinalValue)/Factor.of(compoundRate.getFinalRate());
     }
 
@@ -84,16 +87,16 @@ public class StreamOfCashFlowFactory {
             return new CompoundRate(initRate, this.generatePeriod(initRate, finalRate), finalRate);
         }
 
-        private double generateFinalRate(double initRate, long period){
+        public double generateFinalRate(double initRate, long period){
             double dividend = this.cashFlowRate.create(initRate, period).getFinalRate();
             return (dividend/initRate)-1;
         }
     
-        private double generateInitRate(long period, double finalRate){
+        public double generateInitRate(long period, double finalRate){
             return 0;
         }
     
-        private long generatePeriod(double initRate, double finalRate){
+        public long generatePeriod(double initRate, double finalRate){
             double r = initRate * (finalRate+1);
             r = r+1;
             double base = 1+initRate;

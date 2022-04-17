@@ -1,6 +1,5 @@
 package org.makechtec.financial.financialutils.bound;
 
-import org.makechtec.financial.financialutils.cashflow.SimpleCashFlow;
 import org.makechtec.financial.financialutils.cashflow.SimpleCashFlowFactory;
 
 public class CouponBoundFactory {

@@ -10,11 +10,11 @@ public class PerpetuityFactory {
         return new Perpetuity(this.generatePresentValueWithGrowth(payment, interest, growth), payment, interest, growth);
     }
 
-    private double generatePresentValue(double payment, double interest){
+    public double generatePresentValue(double payment, double interest){
         return payment/interest;
     }
 
-    private double generatePresentValueWithGrowth( double payment, double interest, double growth){
+    public double generatePresentValueWithGrowth( double payment, double interest, double growth){
         return payment/(interest - growth);
     }
 }

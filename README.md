@@ -91,3 +91,5 @@ la unica solución es colocar los parámetros del compoundRate para SimpleCashFl
 
 Para utilizar el SimpleCashFlowFactory se debe usar el CompoundRate devuelto por el CashFlowRate ya que este garantiza crear un
 objeto completo.
+
+hay problemas aún con mockito para crear los spy en las pruebas de streamofcashflow, es el único grupo de test que fallan.
