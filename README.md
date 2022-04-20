@@ -93,3 +93,5 @@ Para utilizar el SimpleCashFlowFactory se debe usar el CompoundRate devuelto por
 objeto completo.
 
 hay problemas aún con mockito para crear los spy en las pruebas de streamofcashflow, es el único grupo de test que fallan.
+
+se sacó la carpeta de los tests para sreamofcashflow porque truena y no podiamos sacar el reporte de jacobo
