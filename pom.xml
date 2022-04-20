@@ -116,6 +116,20 @@
                             </configuration>
                         </execution>
                     </executions>
+                    <configuration>
+                        <excludes>
+                            <exclude>org/makechtec/financial/financialutils/bound/CouponBound.class</exclude>
+                            <exclude>org/makechtec/financial/financialutils/bound/ZeroCouponBound.class</exclude>
+
+                            <exclude>org/makechtec/financial/financialutils/cashflow/SimpleCashFlow.class</exclude>
+                            <exclude>org/makechtec/financial/financialutils/perpetuity/Perpetuity.class</exclude>
+
+                            <exclude>org/makechtec/financial/financialutils/rate/CompoundRate.class</exclude>
+                            <exclude>org/makechtec/financial/financialutils/rate/StatedRate.class</exclude>
+
+                            <exclude>org/makechtec/financial/financialutils/streamofcashflow/StreamOfCashFlow.class</exclude>
+                        </excludes>
+                    </configuration>
                 </plugin>
             </plugins>
         </build>
