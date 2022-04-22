@@ -95,3 +95,12 @@ objeto completo.
 hay problemas aún con mockito para crear los spy en las pruebas de streamofcashflow, es el único grupo de test que fallan.
 
 se sacó la carpeta de los tests para sreamofcashflow porque truena y no podiamos sacar el reporte de jacobo
+
+
+
+
+Hace poco habiamos descubierto que cuando hacemos test orientados al black box estamos ortientando el diseño a tdd que es lo que
+buscabamos y cuando usabamso whitebox era más orientado a la corroboración de algoritmos y procesos.
+
+Debemos investigar más al respecto pero en general solo debemos usar el black box puesto que vamos a cambiar el mecanismo interno pero debe obedecer la misma interfaz.
+
